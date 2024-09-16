@@ -282,7 +282,7 @@ impl Client {
 impl ClientHandle {
     pub(crate) async fn hello(&mut self) -> Result<()> {
         let context = self.context.clone();
-        info!("[hello] -> {:?}", &context);
+        //info!("[hello] -> {:?}", &context);
 
         let mut h = None;
         let mut info = None;
@@ -291,7 +291,7 @@ impl ClientHandle {
         while let Some(packet) = stream.next().await {
             match packet {
                 Ok(Packet::Hello(inner, server_info)) => {
-                    info!("[hello] <- {:?}", &server_info);
+                    //info!("[hello] <- {:?}", &server_info);
                     h = Some(inner);
                     info = Some(server_info);
                 }
@@ -311,7 +311,7 @@ impl ClientHandle {
 
         with_timeout(
             async move {
-                info!("[ping]");
+                //info!("[ping]");
 
                 let mut h = None;
 
@@ -321,7 +321,7 @@ impl ClientHandle {
                 while let Some(packet) = stream.next().await {
                     match packet {
                         Ok(Packet::Pong(inner)) => {
-                            info!("[pong]");
+                            //info!("[pong]");
                             h = Some(inner);
                         }
                         Ok(Packet::Exception(e)) => return Err(Error::Server(e)),
@@ -370,7 +370,7 @@ impl ClientHandle {
         with_timeout(
             async {
                 self.wrap_future(move |c| {
-                    info!("[execute query] {}", query.get_sql());
+                    //info!("[execute query] {}", query.get_sql());
 
                     let transport = c.inner.take().unwrap();
 
@@ -431,7 +431,7 @@ impl ClientHandle {
         with_timeout(
             async {
                 self.wrap_future(move |c| {
-                    info!("[insert]     {}", query.get_sql());
+                    //info!("[insert]     {}", query.get_sql());
                     let transport = c.inner.take().unwrap();
 
                     async move {
