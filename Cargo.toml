@@ -13,7 +13,7 @@
 [package]
 edition = "2018"
 name = "v-clickhouse-rs"
-version = "1.0.0-alpha.1"
+version = "1.0.1-alpha.1"
 authors = ["Mikhail Sukharev <suharev7@gmail.com>"]
 exclude = ["tests/*", "examples/*"]
 description = "Asynchronous Yandex ClickHouse client library."
